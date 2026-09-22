@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand Gesture Video</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="video-card">
+      <video id="videoPlayer" class="video-player" playsinline preload="metadata">
+        <source src="video.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video HTML5.
+      </video>
+
+      <div id="startOverlay" class="start-overlay">
+        <button id="startButton" class="start-button">▶ Mulai</button>
+        <p>Izinkan kamera saat diminta browser.</p>
+      </div>
+
+      <div class="top-bar">
+        <div>
+          <div class="title">Hand Gesture Video</div>
+          <div class="subtitle">Kontrol video dengan tangan</div>
+        </div>
+        <button id="cameraButton" class="small-button">📷 Kamera</button>
+      </div>
+
+      <button id="centerPlay" class="center-play" aria-label="Play/Pause">▶</button>
+
+      <div class="bottom-info">
+        <div class="progress-wrap">
+          <input id="progress" type="range" min="0" max="100" value="0" step="0.1">
+        </div>
+        <div class="controls">
+          <span id="timeLabel">0:00 / 0:00</span>
+          <div class="control-buttons">
+            <button id="backButton" title="Mundur 5 detik">↶ 5</button>
+            <button id="muteButton" title="Mute/Unmute">🔊</button>
+            <button id="forwardButton" title="Maju 5 detik">5 ↷</button>
+            <button id="fullscreenButton" title="Fullscreen">⛶</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="camera-panel">
+      <div class="camera-header">
+        <strong>👋 Hand Tracking</strong>
+        <span id="status" class="status offline">Kamera belum aktif</span>
+      </div>
+
+      <div class="camera-box">
+        <video id="camera" autoplay muted playsinline></video>
+        <canvas id="canvas"></canvas>
+        <div id="gestureBadge" class="gesture-badge">Menunggu tangan…</div>
+      </div>
+
+      <div class="instructions">
+        <h3>Gesture</h3>
+        <div class="gesture-row"><span>☝️</span><b>1 jari</b><span>Play</span></div>
+        <div class="gesture-row"><span>✊</span><b>Kepalan</b><span>Pause</span></div>
+        <div class="gesture-row"><span>🖐️</span><b>5 jari</b><span>Mute / unmute</span></div>
+        <div class="gesture-row"><span>✌️</span><b>2 jari</b><span>Maju 5 detik</span></div>
+        <div class="gesture-row"><span>🤟</span><b>3 jari</b><span>Mundur 5 detik</span></div>
+      </div>
+
+      <p class="note">
+        Kamera diproses langsung di browser. Tidak ada server khusus yang diperlukan.
+      </p>
+    </aside>
+  </main>
+
+  <!-- MediaPipe Hands -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

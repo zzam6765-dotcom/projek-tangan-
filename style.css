@@ -1,0 +1,284 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #08090d;
+  --panel: #11131a;
+  --text: #ffffff;
+  --muted: #a9adba;
+  --accent: #ff2d55;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #20232e 0, #0b0c11 42%, #050507 100%);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: min(1180px, 94vw);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, .75fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.video-card,
+.camera-panel {
+  background: rgba(17, 19, 26, .92);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,.45);
+}
+
+.video-card {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 480px;
+  background: #000;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+  cursor: pointer;
+}
+
+.top-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(#000b, transparent);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.subtitle {
+  color: #c6c8d1;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.small-button,
+.control-buttons button,
+.start-button {
+  border: 0;
+  color: white;
+  background: rgba(255,255,255,.13);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.small-button {
+  padding: 9px 13px;
+  border-radius: 999px;
+}
+
+.center-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 0;
+  color: white;
+  background: rgba(0,0,0,.48);
+  font-size: 28px;
+  cursor: pointer;
+  opacity: .9;
+}
+
+.bottom-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px 16px;
+  background: linear-gradient(transparent, #000c);
+}
+
+.progress-wrap input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+.control-buttons button {
+  min-width: 38px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+.start-overlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: rgba(0,0,0,.72);
+}
+
+.start-overlay.hidden {
+  display: none;
+}
+
+.start-button {
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--accent);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.start-overlay p {
+  color: #ddd;
+  font-size: 12px;
+}
+
+.camera-panel {
+  padding: 16px;
+}
+
+.camera-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.status {
+  font-size: 11px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #282b34;
+  color: #d5d8e0;
+}
+
+.status.online {
+  background: #173b25;
+  color: #8af0a8;
+}
+
+.status.offline {
+  background: #382028;
+  color: #ff9aaa;
+}
+
+.camera-box {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #050505;
+}
+
+#camera,
+#canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+#canvas {
+  pointer-events: none;
+}
+
+.gesture-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 8px 11px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.62);
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.instructions {
+  margin-top: 15px;
+}
+
+.instructions h3 {
+  margin: 0 0 9px;
+  font-size: 14px;
+}
+
+.gesture-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 7px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  color: #cfd2dc;
+  font-size: 12px;
+}
+
+.gesture-row span:first-child {
+  font-size: 20px;
+}
+
+.gesture-row b {
+  color: white;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+  .app {
+    grid-template-columns: 1fr;
+    padding: 12px 0 24px;
+  }
+
+  .video-card {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .camera-panel {
+    order: 2;
+  }
+}
